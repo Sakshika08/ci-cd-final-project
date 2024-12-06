@@ -1,9 +1,10 @@
+---
 apiVersion: tekton.dev/v1beta1
 Kind: Task
 metadata:
   name: cleanup
-
 spec:
+  description: This task will clean up a workspace by deleting all the files.
   workspaces:
     - name: source
   steps:
@@ -31,7 +32,8 @@ spec:
               rm -rf "${WORKSPACE_SOURCE_PATH}"/.[!.]*
               # Delete files and directories starting with .. plus any other character
               rm -rf "${WORKSPACE_SOURCE_PATH}"/..?*
-            fi 	        
+            fi 	
+        
 ---
 apiVersion: tekton.dev/v1beta1
 Kind: Task
